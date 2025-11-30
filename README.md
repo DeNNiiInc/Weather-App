@@ -1,10 +1,10 @@
 # Weather Pro - Professional Weather Application
 
-A beautiful, modern weather application with geolocation support, 7-day forecasts, and detailed hourly breakdowns.
+A beautiful, modern weather application with geolocation support, 7-day forecasts, and detailed hourly breakdowns. Enjoy :)
 
 ## ✨ No API Key Required!
 
-This app uses **Open-Meteo API** which is completely free and requires **NO registration or API key**. Just open the HTML file and it works immediately!
+This app uses **Open-Meteo API** which is completely free and requires **NO registration or API key**. Just open the HTML file and it works immediately! 
 
 ## Features
 
