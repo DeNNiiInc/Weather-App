@@ -76,94 +76,204 @@
                     </div>
                 </div>
                 
-                <div class="current-details">
-                    <div class="detail-item">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <div>
-                            <span class="detail-label">Humidity</span>
-                            <span class="detail-value" id="humidity">--%</span>
+                <div class="current-details bento-grid">
+                    <!-- Wind Card -->
+                    <div class="detail-card card-wind">
+                        <div class="card-header">
+                            <span class="card-title">Wind</span>
+                            <div class="card-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="wind-compass-container">
+                                <div class="compass-circle">
+                                    <div class="compass-marker n">N</div>
+                                    <div class="compass-marker e">E</div>
+                                    <div class="compass-marker s">S</div>
+                                    <div class="compass-marker w">W</div>
+                                    <div id="windDirectionArrow" class="compass-arrow">
+                                        <svg viewBox="0 0 24 24" width="40" height="40" fill="currentColor">
+                                            <path d="M12 2L4.5 20.29L5.21 21L12 18L18.79 21L19.5 20.29L12 2Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wind-data">
+                                <div class="wind-main">
+                                    <span id="windSpeed" class="value-large">--</span>
+                                    <span class="unit">km/h</span>
+                                </div>
+                                <div class="wind-gusts">
+                                    Gusts: <span id="windGusts">--</span> km/h
+                                </div>
+                                <div class="wind-dir-text" id="windDirectionText">--</div>
+                            </div>
                         </div>
                     </div>
-                    
-                    <div class="detail-item">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <div>
-                            <span class="detail-label">Wind Speed</span>
-                            <span class="detail-value" id="windSpeed">-- km/h</span>
+
+                    <!-- UV Index Card -->
+                    <div class="detail-card card-uv">
+                        <div class="card-header">
+                            <span class="card-title">UV Index</span>
+                            <div class="card-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="card-content flex-center">
+                            <div class="gauge-container">
+                                <canvas id="uvGauge" width="120" height="120"></canvas>
+                                <div class="gauge-value">
+                                    <span id="uvIndex">--</span>
+                                    <span id="uvText" class="gauge-label">--</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    
-                    <div class="detail-item">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                        <div>
-                            <span class="detail-label">UV Index</span>
-                            <span class="detail-value" id="uvIndex">--</span>
+
+                    <!-- Sun Card -->
+                    <div class="detail-card card-sun card-wide">
+                        <div class="card-header">
+                            <span class="card-title">Sun</span>
+                            <div class="card-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="sun-graph-container">
+                                <canvas id="sunGraph" width="300" height="100"></canvas>
+                                <div class="sun-times">
+                                    <div class="sunrise">
+                                        <span class="label">Sunrise</span>
+                                        <span id="sunrise">--:--</span>
+                                    </div>
+                                    <div class="sunset">
+                                        <span class="label">Sunset</span>
+                                        <span id="sunset">--:--</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    
-                    <div class="detail-item">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <div>
-                            <span class="detail-label">Pressure</span>
-                            <span class="detail-value" id="pressure">-- hPa</span>
+
+                    <!-- Air Quality Card -->
+                    <div class="detail-card card-aqi">
+                        <div class="card-header">
+                            <span class="card-title">AQI</span>
+                            <div class="card-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20.98 13.02C20.98 13.02 22 14.19 22 15.5C22 17.07 20.5 18 19 18C16.96 18 16 15 16 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M2.98 12.02C2.98 12.02 2 13.19 2 14.5C2 16.07 3.5 17 5 17C7.04 17 8 14 8 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M15 6C15 6 16.5 7 16.5 8.5C16.5 10 15 11 13 11C11.3 11 11 9 11 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M8 8C8 8 7 9 7 10C7 11.5 8.5 12 9.5 12C11 12 12 10 12 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="card-content flex-center">
+                            <div class="gauge-container">
+                                <canvas id="aqiGauge" width="120" height="120"></canvas>
+                                <div class="gauge-value">
+                                    <span id="aqiValue">--</span>
+                                    <span id="aqiText" class="gauge-label">--</span>
+                                </div>
+                            </div>
+                            <div class="aqi-details">
+                                <div class="pollutant">O₃: <span id="aqiO3">--</span></div>
+                                <div class="pollutant">PM2.5: <span id="aqiPm25">--</span></div>
+                            </div>
                         </div>
                     </div>
-                    
-                    <div class="detail-item">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                        <div>
-                            <span class="detail-label">Visibility</span>
-                            <span class="detail-value" id="visibility">-- km</span>
+
+                    <!-- Humidity Card -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <span class="card-title">Humidity</span>
+                            <div class="card-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <span id="humidity" class="value-large">--%</span>
+                            <div class="card-subtext" id="dewPoint">Dew Point: --°</div>
                         </div>
                     </div>
-                    
-                    <div class="detail-item">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M2.5 12.5a10 10 0 0 1 19 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M12 2v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                        <div>
-                            <span class="detail-label">Sunrise</span>
-                            <span class="detail-value" id="sunrise">--:--</span>
+
+                    <!-- Cloud Cover Card -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <span class="card-title">Cloud Cover</span>
+                            <div class="card-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="card-content flex-center column">
+                           <span id="cloudCover" class="value-large">--%</span>
+                           <div class="cloud-visual" id="cloudVisual">
+                               <!-- Visual mapped in JS -->
+                           </div>
                         </div>
                     </div>
-                    
-                    <div class="detail-item">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M2.5 12.5a10 10 0 0 0 19 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M12 22V12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                        <div>
-                            <span class="detail-label">Sunset</span>
-                            <span class="detail-value" id="sunset">--:--</span>
+
+                    <!-- Visibility Card -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <span class="card-title">Visibility</span>
+                            <div class="card-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <span id="visibility" class="value-large">-- km</span>
+                            <div class="card-subtext" id="visibilityText">--</div>
                         </div>
                     </div>
-                    
-                    <div class="detail-item">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M20 17.58A5 5 0 0 0 18 8h-1.26A8 8 0 1 0 4 16.25" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <line x1="8" y1="16" x2="8.01" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            <line x1="8" y1="20" x2="8.01" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            <line x1="12" y1="18" x2="12.01" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            <line x1="12" y1="22" x2="12.01" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            <line x1="16" y1="16" x2="16.01" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            <line x1="16" y1="20" x2="16.01" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                        <div>
-                            <span class="detail-label">Precipitation</span>
-                            <span class="detail-value" id="precipitation">--%</span>
+
+                    <!-- Pressure Card -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <span class="card-title">Pressure</span>
+                            <div class="card-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <span id="pressure" class="value-large">--</span>
+                            <span class="unit">hPa</span>
+                        </div>
+                    </div>
+
+                     <!-- Moon Phase Card -->
+                     <div class="detail-card">
+                        <div class="card-header">
+                            <span class="card-title">Moon Phase</span>
+                            <div class="card-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="card-content flex-center column">
+                            <div class="moon-icon-container" id="moonIcon">
+                                <!-- Rendered via JS -->
+                            </div>
+                            <span id="moonPhase" class="card-subtext" style="text-align:center">--</span>
                         </div>
                     </div>
                 </div>
