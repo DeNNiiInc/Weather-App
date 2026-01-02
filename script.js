@@ -360,7 +360,23 @@ function updateCurrentWeather() {
   // 9. Moon Phase
   const moonPhase = getMoonPhase(new Date());
   renderMoonPhase("moonIcon", moonPhase);
-  document.getElementById("moonPhase").textContent = moonPhase.name;
+  
+  let phaseText = moonPhase.name;
+  if (moonPhase.index !== 4) { // If not Full Moon
+    // Full moon is at 0.5 progress
+    let daysToFull = 0;
+    if (moonPhase.progress < 0.5) {
+        daysToFull = (0.5 - moonPhase.progress) * 29.53;
+    } else {
+        daysToFull = (1.5 - moonPhase.progress) * 29.53;
+    }
+    const days = Math.round(daysToFull);
+    // Only show if > 0 days (avoid showing "0 days" if it's practically full but index isn't 4 yet)
+    if (days > 0) {
+        phaseText += `<br><span style="font-size: 0.8em; opacity: 0.7; font-weight: normal; display: block; margin-top: 4px;">${days} day${days !== 1 ? 's' : ''} to Full Moon</span>`;
+    }
+  }
+  document.getElementById("moonPhase").innerHTML = phaseText;
 
   // 10. Precipitation
   const precipElement = document.getElementById("precipitation");
@@ -640,7 +656,7 @@ function getMoonPhase(date) {
     7: "Waning Crescent",
   };
 
-  return { index: b, name: phases[b] };
+  return { index: b, name: phases[b], progress: jd };
 }
 
 function renderMoonPhase(containerId, phase) {
