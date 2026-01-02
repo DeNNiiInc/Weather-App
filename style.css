@@ -1095,7 +1095,6 @@ body {
 /* ==================== Mobile Optimization ==================== */
 @media (max-width: 768px) {
   /* Container & Header */
-  body { background: red !important; }
   .container {
     padding: var(--spacing-sm) !important;
   }
