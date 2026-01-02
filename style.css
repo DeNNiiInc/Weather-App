@@ -1140,9 +1140,9 @@ body {
   }
 
   /* Compact 16-Day Forecast Grid */
-  .extended-grid {
+  div.extended-grid {
     grid-template-columns: repeat(4, 1fr) !important;
-    gap: 6px !important;
+    gap: 4px !important;
   }
 
   .extended-card {
