@@ -382,8 +382,14 @@ function updateHourlyForecast() {
 
   if (selectedDay === 0) {
     // TODAY: Start from current hour
-    const nowISO = new Date().toISOString().slice(0, 13); // YYYY-MM-DDTHH
-    const currentHourIndex = hourly.time.findIndex((t) => t.startsWith(nowISO));
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hour = String(now.getHours()).padStart(2, '0');
+    const currentHourISO = `${year}-${month}-${day}T${hour}`;
+    
+    const currentHourIndex = hourly.time.findIndex((t) => t.startsWith(currentHourISO));
     startIndex = currentHourIndex !== -1 ? currentHourIndex : 0;
   } else {
     // FUTURE DAY: Start from 00:00 of that day
