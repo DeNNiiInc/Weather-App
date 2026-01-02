@@ -1,6 +1,6 @@
 # 🌤️ Weather Pro
 
-![Weather Pro Banner](assets/screenshots/dashboard.png)
+![Weather Pro Desktop Banner](assets/screenshots/desktop_dashboard.png)
 
 <div align="center">
 
@@ -26,28 +26,35 @@ Experience weather tracking like never before with our feature-rich application:
 ### 🌍 Real-Time Local Weather
 Get instant access to current conditions including:
 - **Temperature & "Feels Like"**
-- **Wind Speed & Direction**
-- **UV Index & Humidity**
-- **Visibility & Cloud Cover**
-- **Sunrise & Sunset Times**
-- **Air Quality Index (AQI)**
+- **Wind Speed & Direction**: Real-time compass and gust tracking.
+- **Moon Phase**: Accurate current phase and countdown to the next Full Moon (e.g., "12 days to Full Moon").
+- **UV Index & Humidity**: With visual gauge indicators.
+- **Air Quality Index (AQI)**: Detailed breakdown of pollutants (O3, PM2.5).
 
-### ⏱️ Hourly Forecast
-Plan your day with precision. Our hourly forecast provides detailed weather breakdowns for the next 24 hours, ensuring you're never caught off guard.
+### 📱 Extreme Mobile Optimization
+Designed for on-the-go usage with a "Thumb-Reach" friendly layout:
+- **Dense Grid System**: 2-column detail cards to separate insights without endless scrolling.
+- **Vector Scaling**: Dynamic icon scaling (48px primary, 16px details) for crisp visuals on high-res screens.
+- **Inline Controls**: Compact search logic to maximize screen real estate.
+
+<div align="center">
+  <img src="assets/screenshots/mobile_top.png" width="30%" alt="Mobile Top View">
+  <img src="assets/screenshots/mobile_details.png" width="30%" alt="Mobile Details Grid">
+  <img src="assets/screenshots/mobile_forecast.png" width="30%" alt="Mobile Forecast View">
+</div>
+
+### ⏱️ Smart Hourly Forecast
+Plan your day with precision:
+- **Instant Start**: Forecast starts immediately from your current local hour ("Now").
+- **Wind Data Integration**: Hourly wind speed and direction included directly in the timeline.
+- **Intuitive Navigation**: Day buttons automatically update to show actual weekday names (e.g., "Saturday", "Sunday").
 
 ### 📅 16-Day Extended Outlook
 Look ahead with confidence. Our comprehensive 16-day forecast grid gives you a clear view of temperature trends and precipitation probabilities for the coming weeks.
 
-![Extended Forecast](assets/screenshots/extended_forecast.png)
-
 ### ⚡ Auto-Sync & Version Control
-Always running the latest version. The application includes a self-updating mechanism that synchronizes with the GitHub repository, ensuring all users have immediate access to new features and fixes.
+Always running the latest version. The application includes a self-updating mechanism that synchronizes with the GitHub repository.
 - **Live Version Tracking**: See the exact Git commit ID and deployment time in the footer.
-
-### 🎨 Modern & Responsive Design
-- **Dark Mode Aesthetic**: Sleek, professional dark theme with glassmorphism effects.
-- **Responsive Layout**: Optimized for desktops, tablets, and mobile devices.
-- **Dynamic Visuals**: Beautiful weather icons and smooth transitions.
 
 ---
 
