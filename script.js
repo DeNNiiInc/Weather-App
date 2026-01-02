@@ -398,36 +398,44 @@ function updateHourlyForecast() {
   const hourly = weatherData.hourly;
   elements.hourlyForecast.innerHTML = "";
 
-  // Show next 24 hours from current time
-  let currentIndex = 0;
-  const nowISO = new Date().toISOString().slice(0, 13); // match YYYY-MM-DDTHH
+  let startIndex = 0;
+  const hoursToShow = 24;
 
-  const foundIndex = hourly.time.findIndex((t) => t.startsWith(nowISO));
-  if (foundIndex !== -1) currentIndex = foundIndex;
+  if (selectedDay === 0) {
+    // TODAY: Start from current hour
+    const nowISO = new Date().toISOString().slice(0, 13); // YYYY-MM-DDTHH
+    const currentHourIndex = hourly.time.findIndex((t) => t.startsWith(nowISO));
+    startIndex = currentHourIndex !== -1 ? currentHourIndex : 0;
+  } else {
+    // FUTURE DAY: Start from 00:00 of that day
+    // We can assume the API returns hourly data starting from today at 00:00 or current hour?
+    // Open-Meteo usually aligns with local time if timezone=auto, but let's be safe.
+    // The 'daily' array aligns with 'selectedDay'.
+    // We need to find the hourly index corresponding to the start of the selected day.
+    
+    // Get the date string for the selected day from daily data
+    if (weatherData.daily && weatherData.daily.time[selectedDay]) {
+        const targetDate = weatherData.daily.time[selectedDay]; // YYYY-MM-DD
+        startIndex = hourly.time.findIndex(t => t.startsWith(targetDate));
+        if (startIndex === -1) startIndex = 0; // Fallback
+    }
+  }
 
-  for (
-    let i = currentIndex;
-    i < currentIndex + 24 && i < hourly.time.length;
-    i++
-  ) {
+  // Iterate to show 24 hours (or available hours)
+  for (let i = startIndex; i < startIndex + hoursToShow && i < hourly.time.length; i++) {
     const time = new Date(hourly.time[i]);
     const weatherInfo = getWeatherInfo(hourly.weather_code[i]);
+    
+    // Check if this is "Now" (only relevant for Today view)
+    const isNow = selectedDay === 0 && i === startIndex;
 
     const item = document.createElement("div");
     item.className = "hourly-item";
     item.innerHTML = `
-            <div class="hourly-time">${
-              i === currentIndex ? "Now" : formatTime(time)
-            }</div>
-            <div class="hourly-icon"><img src="${weatherInfo.icon(
-              true
-            )}" width="40"></div>
-            <div class="hourly-temp">${Math.round(
-              hourly.temperature_2m[i]
-            )}°</div>
-            <div class="hourly-pop">💧 ${
-              hourly.precipitation_probability[i]
-            }%</div>
+            <div class="hourly-time">${isNow ? "Now" : formatTime(time)}</div>
+            <div class="hourly-icon"><img src="${weatherInfo.icon(true)}" width="40"></div>
+            <div class="hourly-temp">${Math.round(hourly.temperature_2m[i])}°</div>
+            <div class="hourly-pop">💧 ${hourly.precipitation_probability[i]}%</div>
         `;
     elements.hourlyForecast.appendChild(item);
   }
