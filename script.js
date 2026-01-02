@@ -22,6 +22,7 @@ const elements = {
   forecastCards: document.getElementById("forecastCards"),
   hourlyForecast: document.getElementById("hourlyForecast"),
   daySelectors: document.querySelectorAll(".day-selector"),
+  extendedGrid: document.getElementById("extendedGrid"),
   // New Elements
   windDirectionArrow: document.getElementById("windDirectionArrow"),
   windDirectionText: document.getElementById("windDirectionText"),
@@ -204,7 +205,7 @@ async function fetchWeather(lat, lon) {
     daily:
       "weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,precipitation_probability_max,wind_speed_10m_max,uv_index_max",
     timezone: "auto",
-    forecast_days: 14, // Get more days to ensure we have enough for 10-day view
+    forecast_days: 16, // Get max free tier days (16)
   });
 
   const response = await fetch(`${WEATHER_API}?${params}`);
@@ -230,6 +231,7 @@ function updateUI() {
   updateCurrentWeather();
   updateForecast();
   updateHourlyForecast();
+  updateExtendedForecast();
 }
 
 function updateCurrentWeather() {
@@ -462,6 +464,45 @@ function updateDayButtons() {
       btn.textContent = formatDayName(date);
     }
   });
+}
+
+function updateExtendedForecast() {
+  if (!weatherData || !weatherData.daily) return;
+  const daily = weatherData.daily;
+  if (elements.extendedGrid) elements.extendedGrid.innerHTML = "";
+
+  // Show all available days (up to 16)
+  const daysToShow = daily.time.length;
+
+  for (let i = 0; i < daysToShow; i++) {
+    const card = document.createElement("div");
+    card.className = "extended-card";
+    
+    const date = new Date(daily.time[i]);
+    const isToday = i === 0;
+
+    if (isToday) card.classList.add("is-today");
+
+    const weatherInfo = getWeatherInfo(daily.weather_code[i]);
+    const rainProb = daily.precipitation_probability_max ? Math.round(daily.precipitation_probability_max[i]) : 0;
+
+    card.innerHTML = `
+        <div class="extended-date">${formatShortDate(date)}</div>
+        <div class="extended-day">${formatDayName(date)}</div>
+        <div class="extended-icon">
+            <img src="${weatherInfo.icon(true)}" alt="${weatherInfo.description}">
+        </div>
+        <div class="extended-temps">
+            <span class="extended-high">${Math.round(daily.temperature_2m_max[i])}°</span>
+            <span class="extended-low">${Math.round(daily.temperature_2m_min[i])}°</span>
+        </div>
+        <div class="extended-rain">
+            <span>💧</span>
+            <span>${rainProb}%</span>
+        </div>
+    `;
+    elements.extendedGrid.appendChild(card);
+  }
 }
 
 // ==================== Visualization Rendering ====================
