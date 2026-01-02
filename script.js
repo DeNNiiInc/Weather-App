@@ -227,6 +227,7 @@ async function fetchAirQuality(lat, lon) {
 }
 
 // ==================== UI Updates ====================
+function updateUI() {
   updateCurrentWeather();
   updateForecast();
   updateHourlyForecast();
