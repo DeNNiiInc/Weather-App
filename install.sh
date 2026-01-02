@@ -31,18 +31,20 @@ GITHUB_USER_ENCODED=$(echo "$GITHUB_USER" | sed 's/@/%40/g')
 echo "🌤️  Weather-App Installer"
 echo "========================="
 
-# Find an unused port between 10000-20000
-find_unused_port() {
-    while true; do
-        PORT=$(shuf -i 10000-20000 -n 1)
-        if ! ss -tuln | grep -q ":${PORT} "; then
-            echo "$PORT"
-            return
-        fi
-    done
-}
+# Check if PORT is already set, otherwise find an unused one
+if [ -z "$PORT" ]; then
+    find_unused_port() {
+        while true; do
+            local p=$(shuf -i 10000-20000 -n 1)
+            if ! ss -tuln | grep -q ":${p} "; then
+                echo "$p"
+                return
+            fi
+        done
+    }
+    PORT=$(find_unused_port)
+fi
 
-PORT=$(find_unused_port)
 echo "📡 Selected port: ${PORT}"
 
 # Install git if not present
