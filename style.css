@@ -1091,3 +1091,114 @@ body {
     height: 18px;
   }
 }
+
+/* ==================== Mobile Optimization ==================== */
+@media (max-width: 768px) {
+  /* Container & Header */
+  .container {
+    padding: var(--spacing-sm) !important;
+  }
+
+  .header {
+    margin-bottom: var(--spacing-md);
+  }
+
+  /* Compact Current Weather */
+  .current-weather {
+    padding: var(--spacing-md);
+    min-height: auto;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .current-main {
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .temp-display {
+    font-size: 3.5rem;
+  }
+  
+  .weather-icon-large img {
+    width: 64px;
+    height: 64px;
+    animation: none; /* Disable float on mobile to save performance */
+  }
+
+  .location-info h2 {
+    font-size: 1.5rem;
+  }
+  
+  .location-info p {
+    font-size: 0.9rem;
+  }
+  
+  /* Stack Extended Temps */
+  .extended-temps {
+      flex-direction: column;
+      gap: 2px;
+  }
+
+  /* Compact 16-Day Forecast Grid */
+  .extended-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 6px !important;
+  }
+
+  .extended-card {
+    padding: 8px 4px !important;
+    border-radius: 8px !important;
+    gap: 4px !important;
+    min-height: 110px;
+    justify-content: flex-start;
+  }
+
+  .extended-date {
+    font-size: 0.7rem;
+    margin: 0;
+  }
+
+  .extended-day {
+    font-size: 0.65rem;
+    opacity: 0.8;
+  }
+
+  .extended-icon img {
+    width: 28px;
+    height: 28px;
+    margin: 2px 0;
+  }
+
+  .extended-temps {
+    font-size: 0.75rem;
+    gap: 2px;
+  }
+
+  .extended-rain {
+    font-size: 0.7rem;
+  }
+  
+  /* Hourly Section */
+  .hourly-section {
+    padding: var(--spacing-md);
+    margin-top: var(--spacing-md);
+  }
+  
+  .hourly-item {
+    min-width: 70px;
+    padding: 10px 5px;
+  }
+  
+  .hourly-time {
+    font-size: 0.8rem;
+  }
+  
+  .hourly-icon img {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .hourly-temp {
+    font-size: 1rem;
+  }
+}
