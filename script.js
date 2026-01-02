@@ -227,12 +227,29 @@ async function fetchAirQuality(lat, lon) {
 }
 
 // ==================== UI Updates ====================
-function updateUI() {
   updateCurrentWeather();
-
+  updateDaySelectorLabels(); // Update button labels to real days
   updateHourlyForecast();
   updateExtendedForecast();
   fetchGitInfo();
+}
+
+function updateDaySelectorLabels() {
+  if (!weatherData || !weatherData.daily || !weatherData.daily.time) return;
+
+  elements.daySelectors.forEach((btn) => {
+    const index = parseInt(btn.dataset.day);
+    if (index === 0) {
+      btn.textContent = "Today";
+    } else if (index === 1) {
+      btn.textContent = "Tomorrow";
+    } else if (weatherData.daily.time[index]) {
+      // Parse YYYY-MM-DD safely
+      const [y, m, d] = weatherData.daily.time[index].split('-').map(Number);
+      const date = new Date(y, m - 1, d); // Local time constructor
+      btn.textContent = date.toLocaleDateString("en-US", { weekday: "long" });
+    }
+  });
 }
 
 async function fetchGitInfo() {
