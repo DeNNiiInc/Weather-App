@@ -4,7 +4,7 @@
 
 <div align="center">
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Launch%20App-blue?style=for-the-badge&logo=rocket)](https://weather-app.beyondcloud.technology/)
+[![Live](https://img.shields.io/badge/Live%20Demo-Launch%20App-blue?style=for-the-badge&logo=rocket)](https://weather-app.beyondcloud.technology/)
 [![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](LICENSE)
 [![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5)
 [![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
@@ -13,7 +13,7 @@
 ### A Modern, Professional Weather Dashboard
 **Precision forecasts, extended outlooks, and localized weather data at your fingertips.**
 
-[**Explore the Live Demo »**](https://weather-app.beyondcloud.technology/)
+[**Explore the Live Project »**](https://weather-app.beyondcloud.technology/)
 
 </div>
 
