@@ -1110,50 +1110,143 @@ body {
 }
 
 /* ==================== Mobile Optimization ==================== */
+/* ==================== Mobile Optimization ==================== */
 @media (max-width: 768px) {
-  /* Container & Header */
+  /* Container & Header - Vector Scale Optimization */
   .container {
-    padding: var(--spacing-sm) !important;
+    padding: 8px !important;
   }
 
+  /* Inline Header for compact view */
   .header {
-    margin-bottom: var(--spacing-md);
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .logo {
+    display: none; /* Hide logo text on mobile to save space, or keep small? User implies "too much scrolling" */
+  }
+
+  /* Or keep logo but make everything tiny? Let's just compact the search bar line */
+  .search-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row; /* Force row */
+    gap: 6px;
+  }
+  
+  #searchInput {
+    width: auto;
+    flex-grow: 1;
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  .search-btn, .location-btn {
+    padding: 8px;
+    width: 36px;
+    height: 36px;
   }
 
   /* Compact Current Weather */
   .current-weather {
-    padding: var(--spacing-md);
+    padding: 12px;
     min-height: auto;
-    margin-bottom: var(--spacing-md);
+    margin-bottom: 12px;
   }
 
   .current-main {
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-md);
+    gap: 8px;
+    margin-bottom: 12px;
+    /* Side-by-side Layout for Info + Temp */
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center; 
+    text-align: left;
   }
 
-  .temp-display {
-    font-size: 3.5rem;
-  }
-  
-  .weather-icon-large img {
-    width: 64px;
-    height: 64px;
-    animation: none; /* Disable float on mobile to save performance */
+  /* Left side: Location + Desc */
+  .location-info {
+    text-align: left;
   }
 
   .location-info h2 {
-    font-size: 1.5rem;
+    font-size: 1.3rem; /* Scaled down */
+    margin-bottom: 2px;
   }
   
   .location-info p {
+    font-size: 0.8rem;
+    opacity: 0.8;
+  }
+
+  .weather-description {
+    text-align: left;
+    margin-top: 4px;
     font-size: 0.9rem;
+  }
+
+  /* Right side: Temp + Icon */
+  .current-temp {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .temp-display {
+    font-size: 2.8rem; /* Significantly smaller */
+    line-height: 1;
+  }
+  
+  .weather-icon-large img {
+    width: 48px; /* Vector scaled down */
+    height: 48px;
+    animation: none;
+    margin-top: -8px; /* Pull closer */
+  }
+
+  /* Dense Bento Grid (2 columns) */
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) !important; /* Force 2 columns */
+    gap: 8px;
+  }
+
+  .detail-card {
+    padding: 10px;
+    aspect-ratio: auto; /* Remove forced aspect ratio */
+  }
+
+  .card-title {
+    font-size: 0.75rem;
+  }
+  
+  .card-icon svg {
+    width: 16px; /* Scale icons */
+    height: 16px;
+  }
+
+  .value-large {
+    font-size: 1.2rem; /* Reduce large numbers */
   }
   
   /* Stack Extended Temps */
   .extended-temps {
       flex-direction: column;
       gap: 2px;
+  }
+
+  /* Ensure wide cards span full width in the dense grid */
+  .card-wide {
+    grid-column: span 2; 
+  }
+
+  /* Canvas scaling for small cards */
+  canvas {
+    max-width: 100%;
+    height: auto;
   }
 
   /* Compact 16-Day Forecast Grid */
