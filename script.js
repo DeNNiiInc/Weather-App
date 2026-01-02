@@ -334,9 +334,10 @@ function updateCurrentWeather() {
   document.getElementById("moonPhase").textContent = moonPhase.name;
 
   // 10. Precipitation
-  document.getElementById(
-    "precipitation"
-  ).textContent = `${current.precipitation}mm`;
+  const precipElement = document.getElementById("precipitation");
+  if (precipElement) {
+    precipElement.textContent = `${current.precipitation}mm`;
+  }
 }
 
 function updateForecast() {
