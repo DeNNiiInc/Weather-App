@@ -973,6 +973,35 @@ body {
   transform: scale(1.1);
 }
 
+/* Git Info Display */
+.git-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.git-id,
+.git-age {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius-md);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+}
+
+.git-id svg,
+.git-age svg {
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
 /* Mobile footer adjustments */
 @media (max-width: 480px) {
   .github-link {

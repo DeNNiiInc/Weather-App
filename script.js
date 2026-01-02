@@ -38,10 +38,55 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function initializeApp() {
   searchCity("Melbourne, Australia");
+  fetchGitInfo(); // Load git commit info
   // Try user location in background
   setTimeout(() => {
     getUserLocation();
   }, 1000);
+}
+
+// ==================== Git Info ====================
+async function fetchGitInfo() {
+  try {
+    const response = await fetch('https://api.github.com/repos/DeNNiiInc/Weather-App/commits/main');
+    const data = await response.json();
+    
+    if (data.sha) {
+      // Display short commit ID
+      const shortSha = data.sha.substring(0, 7);
+      document.getElementById('gitCommitId').textContent = shortSha;
+      
+      // Calculate and display commit age
+      const commitDate = new Date(data.commit.committer.date);
+      const age = getTimeAgo(commitDate);
+      document.getElementById('gitAge').textContent = age;
+    }
+  } catch (error) {
+    document.getElementById('gitCommitId').textContent = 'N/A';
+    document.getElementById('gitAge').textContent = 'N/A';
+  }
+}
+
+function getTimeAgo(date) {
+  const seconds = Math.floor((new Date() - date) / 1000);
+  
+  const intervals = [
+    { label: 'year', seconds: 31536000 },
+    { label: 'month', seconds: 2592000 },
+    { label: 'week', seconds: 604800 },
+    { label: 'day', seconds: 86400 },
+    { label: 'hour', seconds: 3600 },
+    { label: 'minute', seconds: 60 }
+  ];
+  
+  for (const interval of intervals) {
+    const count = Math.floor(seconds / interval.seconds);
+    if (count >= 1) {
+      return `${count} ${interval.label}${count > 1 ? 's' : ''} ago`;
+    }
+  }
+  
+  return 'just now';
 }
 
 function attachEventListeners() {
