@@ -1,0 +1,14 @@
+# Secrets - contains sensitive credentials
+secrets.php
+generate_install.php
+
+# Dependencies
+node_modules/
+
+# Environment files
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
