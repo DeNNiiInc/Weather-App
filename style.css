@@ -793,6 +793,15 @@ body {
   color: var(--text-tertiary);
 }
 
+.hourly-pop, .hourly-wind {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
 /* ==================== Error Message ==================== */
 .error-message {
   position: fixed;
@@ -1212,5 +1221,9 @@ body {
   
   .hourly-temp {
     font-size: 1rem;
+  }
+
+  .hourly-wind {
+    font-size: 0.7rem;
   }
 }

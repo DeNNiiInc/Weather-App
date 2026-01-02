@@ -415,6 +415,7 @@ function updateHourlyForecast() {
             <div class="hourly-icon"><img src="${weatherInfo.icon(true)}" width="40"></div>
             <div class="hourly-temp">${Math.round(hourly.temperature_2m[i])}°</div>
             <div class="hourly-pop">💧 ${hourly.precipitation_probability[i]}%</div>
+            <div class="hourly-wind">💨 ${Math.round(hourly.wind_speed_10m[i])}km/h</div>
         `;
     elements.hourlyForecast.appendChild(item);
   }
