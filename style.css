@@ -1008,6 +1008,14 @@ body {
   gap: 4px;
 }
 
+.extended-wind {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
 /* ==================== Footer ==================== */
 .app-footer {
   margin-top: var(--spacing-xl);
@@ -1175,6 +1183,10 @@ body {
   }
 
   .extended-rain {
+    font-size: 0.7rem;
+  }
+
+  .extended-wind {
     font-size: 0.7rem;
   }
   

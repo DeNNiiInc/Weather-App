@@ -476,6 +476,10 @@ function updateExtendedForecast() {
             <span>💧</span>
             <span>${rainProb}%</span>
         </div>
+        <div class="extended-wind">
+            <span>💨</span>
+            <span>${Math.round(daily.wind_speed_10m_max[i])}km/h</span>
+        </div>
     `;
     elements.extendedGrid.appendChild(card);
   }
