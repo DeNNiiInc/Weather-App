@@ -62,7 +62,22 @@ rm -f "${WEB_ROOT}/secrets.php"
 rm -f "${WEB_ROOT}/secrets.sample.php"
 rm -f "${WEB_ROOT}/install.sh"
 rm -f "${WEB_ROOT}/generate_install.php"
-rm -rf "${WEB_ROOT}/.git"
+
+# Generate initial version.json
+echo "📝 Generating version info..."
+cd "${WEB_ROOT}"
+COMMIT_ID=$(git rev-parse --short HEAD)
+COMMIT_TIME=$(git show -s --format=%ct HEAD)
+echo "{\"id\": \"$COMMIT_ID\", \"timestamp\": $COMMIT_TIME}" > version.json
+cd - > /dev/null
+
+# Setup Auto-Sync (Cron)
+echo "🔄 Setting up Auto-Sync..."
+SYNC_SCRIPT="${WEB_ROOT}/auto_git_sync.sh"
+chmod +x "$SYNC_SCRIPT"
+# Run every 5 minutes
+CRON_JOB="*/5 * * * * $SYNC_SCRIPT >> /var/log/weather-app-sync.log 2>&1"
+(crontab -l 2>/dev/null | grep -v "$SYNC_SCRIPT"; echo "$CRON_JOB") | crontab -
 
 # Set permissions
 echo "🔐 Setting permissions..."

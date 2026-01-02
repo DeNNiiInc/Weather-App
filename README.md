@@ -1,155 +1,74 @@
 # Weather Pro - Professional Weather Application
 
-A beautiful, modern weather application with geolocation support, 7-day forecasts, and detailed hourly breakdowns. Enjoy :)
+A beautiful, modern weather application with geolocation support, 7-day forecasts, 16-day extended outlooks, and detailed hourly breakdowns.
 
-## ✨ No API Key Required!
+![Weather App Preview](https://github.com/DeNNiiInc/Weather-App/raw/main/screenshots/preview.png)
 
-This app uses **Open-Meteo API** which is completely free and requires **NO registration or API key**. Just open the HTML file and it works immediately! 
+## ✨ Key Features
 
-## Features
+### 🎨 Modern & Responsive Design
+- **Glassmorphism UI**: Premium visual effects with dynamic gradients.
+- **Adaptive Backgrounds**: Changes based on current weather conditions (e.g., sunny, rainy, night).
+- **Responsive Grid**: Looks great on mobile, tablet, and desktop.
 
-🎨 **Modern Design**
-- Glassmorphism UI effects
-- Dynamic gradient backgrounds that change based on weather conditions
-- Smooth animations and transitions
-- Fully responsive design
+### 📊 Comprehensive Weather Data
+- **Current Conditions**: Temperature, feels like, humidity, wind, UV index, and air quality.
+- **7-Day Forecast**: Daily summaries with high/lows.
+- **16-Day Outlook**: Extended forecast grid with precipitation probability and trends.
+- **Hourly Forecast**: Detailed 24-hour breakdown for any selected day.
+- **Sun & Moon**: Sunrise/sunset graph and moon phase display.
 
-🌍 **Location Support**
-- Automatic geolocation detection
-- Search for any city worldwide
-- Current location as default option
+### 🛠️ Professional Features
+- **No API Key Required**: Uses Open-Meteo API (free, no registration).
+- **Auto-Location**: Automatically detects user city.
+- **Branding**: Custom logo and Git version info in footer.
 
-📊 **Comprehensive Weather Data**
-- Current weather conditions
-- Temperature, feels like, humidity, wind speed
-- Pressure, visibility, sunrise/sunset times
-- 7-day forecast with daily summaries
-- Hour-by-hour breakdown for each day
-- Precipitation probability
-- Weather icons and descriptions
+---
 
-## Quick Start
+## 🚀 Server Installation (Automated)
 
-**No setup required!** Simply:
+You can deploy this application to any Debian/Ubuntu server (including TurnKey Linux NGINX) with a single command. The installer sets up NGINX, permissions, and automatic updates.
 
-1. Open `index.html` in your web browser
-2. Allow location access when prompted (or search for a city)
-3. Enjoy your weather forecast!
+### One-Line Installer
 
-That's it! No API keys, no registration, no configuration needed.
+```bash
+GITHUB_USER="your-email" GITHUB_TOKEN="your-token" curl -sSL https://raw.githubusercontent.com/DeNNiiInc/Weather-App/main/install.sh | bash
+```
 
-## Usage
+**What the installer does:**
+1.  Clones the repository.
+2.  Configures NGINX with caching and gzip compression.
+3.  Sets up **Auto-Sync** (updates from GitHub every 5 minutes).
+4.  Generates version info for the UI.
 
-### Search for a City
-1. Type a city name in the search box
-2. Click the search button or press Enter
-3. Weather data will update for the selected city
+### Manual Usage
 
-### Use Current Location
-- Click the location button (📍) to refresh with your current location
-- On first load, the app automatically requests your location
+You can also run the app locally by simply opening `index.html` in your browser. No server required for basic usage!
 
-### View Hourly Forecast
-1. The hourly forecast shows detailed hour-by-hour data
-2. Click the day selector buttons (Today, Tomorrow, Day 3, etc.) to view hourly data for different days
-3. Scroll horizontally to see all hours for the selected day
+---
 
-### Weather Details
-Each forecast includes:
-- Temperature (high/low for daily, specific for hourly)
-- Weather conditions and description
-- Humidity percentage
-- Wind speed
-- Precipitation probability (hourly)
-- Weather icons
+## 🔄 Automatic Updates
 
-## About Open-Meteo API
+The detailed server installation includes an **Auto-Sync** feature.
+- A cron job runs every **5 minutes**.
+- Checks GitHub for new commits.
+- Pulls changes and updates the live site immediately.
+- Refreshes the "Git Version" displayed in the app footer.
 
-This app uses [Open-Meteo](https://open-meteo.com/), a free weather API that:
+---
 
-✅ **Completely free** - No credit card required  
-✅ **No registration** - No API key needed  
-✅ **10,000 requests per day** - More than enough for personal use  
-✅ **7-day forecast** - With hourly data  
-✅ **High quality data** - Reliable weather information  
+## 🛠️ Technology Stack
 
-## Browser Compatibility
+- **Frontend**: HTML5, CSS3 (Variables & Glassmorphism), Vanilla JavaScript (ES6+).
+- **Backend (Optional)**: NGINX (Static serving), PHP (Available but not required for core logic).
+- **APIs**:
+  - [Open-Meteo](https://open-meteo.com/) (Weather Data)
+  - [Open-Meteo Geocoding](https://open-meteo.com/en/docs/geocoding-api) (Location Search)
 
-- ✅ Chrome (recommended)
-- ✅ Firefox
-- ✅ Safari
-- ✅ Edge
-- ✅ Opera
-
-**Requirements:**
-- JavaScript enabled
-- Geolocation API support (for location features)
-- Internet connection
-
-## Privacy
-
-This application:
-- Only requests location data when you click the location button or on initial load
-- Does not store or transmit your location data except to Open-Meteo API for weather data
-- Does not use cookies or local storage
-- Does not track user behavior
-- Is completely client-side (no backend server)
-
-## Troubleshooting
-
-### "Unable to get your location" error
-- Make sure you've allowed location access in your browser
-- Try searching for a city manually instead
-- The app will fall back to London if location access is denied
-
-### "City not found" error
-- Check the spelling of the city name
-- Try adding the country name (e.g., "Paris, France")
-- Some small cities may not be in the database
-
-### Weather data not loading
-- Check your internet connection
-- Try refreshing the page
-- Make sure JavaScript is enabled in your browser
-
-### Blank or broken display
-- Make sure all three files (index.html, style.css, script.js) are in the same folder
-- Try clearing your browser cache
-- Check the browser console for any errors (F12)
-
-## Technical Details
-
-### Files
-- `index.html` - Main HTML structure
-- `style.css` - Styling and animations
-- `script.js` - Weather data fetching and UI logic
-- `README.md` - This file
-
-### APIs Used
-- **Open-Meteo Weather API** - Weather data
-- **Open-Meteo Geocoding API** - City search and reverse geocoding
-- **Browser Geolocation API** - Current location detection
-
-### Weather Codes
-The app uses WMO Weather interpretation codes to display accurate weather conditions and appropriate icons for:
-- Clear skies
-- Clouds (partly cloudy, overcast)
-- Rain (light, moderate, heavy)
-- Snow
-- Thunderstorms
-- Fog and mist
-- Drizzle
-
-## Credits
-
-- Weather data provided by [Open-Meteo](https://open-meteo.com/)
-- Weather icons from [OpenWeatherMap](https://openweathermap.org/)
-- Font: [Inter](https://fonts.google.com/specimen/Inter) from Google Fonts
-
-## License
+## 📜 License
 
 This project is open source and available for personal and commercial use.
 
 ---
 
-**Enjoy your weather forecast! 🌤️**
+**Built with 💙 by DeNNiiInc**

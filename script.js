@@ -227,11 +227,37 @@ async function fetchAirQuality(lat, lon) {
 }
 
 // ==================== UI Updates ====================
-function updateUI() {
   updateCurrentWeather();
   updateForecast();
   updateHourlyForecast();
   updateExtendedForecast();
+  fetchGitInfo();
+}
+
+async function fetchGitInfo() {
+  try {
+    const response = await fetch('version.json');
+    if (!response.ok) throw new Error('Version info not found');
+    const data = await response.json();
+    
+    document.getElementById('gitCommitId').textContent = data.id;
+    
+    // Calculate age
+    const now = Math.floor(Date.now() / 1000);
+    const diff = now - data.timestamp;
+    
+    let ageText = '';
+    if (diff < 60) ageText = 'Just now';
+    else if (diff < 3600) ageText = `${Math.floor(diff / 60)}m ago`;
+    else if (diff < 86400) ageText = `${Math.floor(diff / 3600)}h ago`;
+    else ageText = `${Math.floor(diff / 86400)}d ago`;
+    
+    document.getElementById('gitAge').textContent = ageText;
+  } catch (e) {
+    console.log('Git info missing');
+    document.getElementById('gitCommitId').textContent = 'Dev';
+    document.getElementById('gitAge').textContent = 'Local';
+  }
 }
 
 function updateCurrentWeather() {
