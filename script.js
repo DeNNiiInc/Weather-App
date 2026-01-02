@@ -229,7 +229,7 @@ async function fetchAirQuality(lat, lon) {
 // ==================== UI Updates ====================
 function updateUI() {
   updateCurrentWeather();
-  updateForecast();
+
   updateHourlyForecast();
   updateExtendedForecast();
   fetchGitInfo();
@@ -369,58 +369,7 @@ function updateCurrentWeather() {
   }
 }
 
-function updateForecast() {
-  if (!weatherData || !weatherData.daily) return;
-  const daily = weatherData.daily;
-  elements.forecastCards.innerHTML = "";
 
-  // Show 10 days
-  const daysToShow = Math.min(10, daily.time.length);
-
-  for (let i = 0; i < daysToShow; i++) {
-    const card = createForecastCard(daily, i);
-    elements.forecastCards.appendChild(card);
-  }
-
-  updateDayButtons();
-}
-
-function createForecastCard(daily, index) {
-  const card = document.createElement("div");
-  card.className = "forecast-card";
-
-  const date = new Date(daily.time[index]);
-  const dayName = index === 0 ? "Today" : formatDayName(date);
-  const weatherInfo = getWeatherInfo(daily.weather_code[index]);
-  const rainProb = daily.precipitation_probability_max
-    ? Math.round(daily.precipitation_probability_max[index])
-    : 0;
-
-  card.innerHTML = `
-        <div class="forecast-day">${dayName}</div>
-        <div class="forecast-date">${formatShortDate(date)}</div>
-        <div class="forecast-icon">
-            <img src="${weatherInfo.icon(true)}" alt="${
-    weatherInfo.description
-  }">
-        </div>
-        <div class="forecast-temp">
-            <span class="temp-high">${Math.round(
-              daily.temperature_2m_max[index]
-            )}°</span>
-            <span class="temp-low">${Math.round(
-              daily.temperature_2m_min[index]
-            )}°</span>
-        </div>
-        <div class="forecast-details">
-            <div class="forecast-detail">
-                <span>Rain</span>
-                <span>${rainProb}%</span>
-            </div>
-        </div>
-    `;
-  return card;
-}
 
 // Re-implement updateHourlyForecast (keeping it simple as it was mostly fine)
 function updateHourlyForecast() {
