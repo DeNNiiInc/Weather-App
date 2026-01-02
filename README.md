@@ -1,74 +1,116 @@
-# Weather Pro - Professional Weather Application
+# 🌤️ Weather Pro
 
-A beautiful, modern weather application with geolocation support, 7-day forecasts, 16-day extended outlooks, and detailed hourly breakdowns.
+![Weather Pro Banner](assets/screenshots/dashboard.png)
 
-![Weather App Preview](https://github.com/DeNNiiInc/Weather-App/raw/main/screenshots/preview.png)
+<div align="center">
 
-## ✨ Key Features
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Launch%20App-blue?style=for-the-badge&logo=rocket)](https://weather-app.beyondcloud.technology/)
+[![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](LICENSE)
+[![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5)
+[![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
+### A Modern, Professional Weather Dashboard
+**Precision forecasts, extended outlooks, and localized weather data at your fingertips.**
+
+[**Explore the Live Demo »**](https://weather-app.beyondcloud.technology/)
+
+</div>
+
+---
+
+## ✨ Features
+
+Experience weather tracking like never before with our feature-rich application:
+
+### 🌍 Real-Time Local Weather
+Get instant access to current conditions including:
+- **Temperature & "Feels Like"**
+- **Wind Speed & Direction**
+- **UV Index & Humidity**
+- **Visibility & Cloud Cover**
+- **Sunrise & Sunset Times**
+- **Air Quality Index (AQI)**
+
+### ⏱️ Hourly Forecast
+Plan your day with precision. Our hourly forecast provides detailed weather breakdowns for the next 24 hours, ensuring you're never caught off guard.
+
+### 📅 16-Day Extended Outlook
+Look ahead with confidence. Our comprehensive 16-day forecast grid gives you a clear view of temperature trends and precipitation probabilities for the coming weeks.
+
+![Extended Forecast](assets/screenshots/extended_forecast.png)
+
+### ⚡ Auto-Sync & Version Control
+Always running the latest version. The application includes a self-updating mechanism that synchronizes with the GitHub repository, ensuring all users have immediate access to new features and fixes.
+- **Live Version Tracking**: See the exact Git commit ID and deployment time in the footer.
 
 ### 🎨 Modern & Responsive Design
-- **Glassmorphism UI**: Premium visual effects with dynamic gradients.
-- **Adaptive Backgrounds**: Changes based on current weather conditions (e.g., sunny, rainy, night).
-- **Responsive Grid**: Looks great on mobile, tablet, and desktop.
-
-### 📊 Comprehensive Weather Data
-- **Current Conditions**: Temperature, feels like, humidity, wind, UV index, and air quality.
-- **7-Day Forecast**: Daily summaries with high/lows.
-- **16-Day Outlook**: Extended forecast grid with precipitation probability and trends.
-- **Hourly Forecast**: Detailed 24-hour breakdown for any selected day.
-- **Sun & Moon**: Sunrise/sunset graph and moon phase display.
-
-### 🛠️ Professional Features
-- **No API Key Required**: Uses Open-Meteo API (free, no registration).
-- **Auto-Location**: Automatically detects user city.
-- **Branding**: Custom logo and Git version info in footer.
+- **Dark Mode Aesthetic**: Sleek, professional dark theme with glassmorphism effects.
+- **Responsive Layout**: Optimized for desktops, tablets, and mobile devices.
+- **Dynamic Visuals**: Beautiful weather icons and smooth transitions.
 
 ---
 
-## 🚀 Server Installation (Automated)
+## 🚀 Installation & Deployment
 
-You can deploy this application to any Debian/Ubuntu server (including TurnKey Linux NGINX) with a single command. The installer sets up NGINX, permissions, and automatic updates.
+Deploy your own instance of Weather Pro in minutes.
 
-### One-Line Installer
+### Server Requirements
+- **OS**: Ubuntu / Debian (Recommended)
+- **Web Server**: NGINX (Preferred) or Apache
+- **Permissions**: `sudo` access
+
+### Quick Start (Automated Install)
+
+One command to rule them all. Use our automated installer to set up the environment, configure NGINX, and launch the app.
 
 ```bash
-GITHUB_USER="your-email" GITHUB_TOKEN="your-token" curl -sSL https://raw.githubusercontent.com/DeNNiiInc/Weather-App/main/install.sh | bash
+# Clone the repository
+git clone https://github.com/DeNNiiInc/Weather-App.git
+cd Weather-App
+
+# Run the installer (optionally specify a PORT)
+# Default is random, or set specific port e.g., 14301
+sudo PORT=14301 ./install.sh
 ```
 
-**What the installer does:**
-1.  Clones the repository.
-2.  Configures NGINX with caching and gzip compression.
-3.  Sets up **Auto-Sync** (updates from GitHub every 5 minutes).
-4.  Generates version info for the UI.
+### Manual Setup
+1.  **Clone the Repo**: `git clone https://github.com/DeNNiiInc/Weather-App.git`
+2.  **Web Root**: Move files to your web server root (e.g., `/var/www/html/weather-app`).
+3.  **Permissions**: Ensure the web user (e.g., `www-data`) has ownership.
+4.  **Cron Job**: Setup a cron job for `auto_git_sync.sh` to enable auto-updates.
 
-### Manual Usage
-
-You can also run the app locally by simply opening `index.html` in your browser. No server required for basic usage!
-
----
-
-## 🔄 Automatic Updates
-
-The detailed server installation includes an **Auto-Sync** feature.
-- A cron job runs every **5 minutes**.
-- Checks GitHub for new commits.
-- Pulls changes and updates the live site immediately.
-- Refreshes the "Git Version" displayed in the app footer.
+```bash
+*/5 * * * * /path/to/weather-app/auto_git_sync.sh
+```
 
 ---
 
 ## 🛠️ Technology Stack
 
-- **Frontend**: HTML5, CSS3 (Variables & Glassmorphism), Vanilla JavaScript (ES6+).
-- **Backend (Optional)**: NGINX (Static serving), PHP (Available but not required for core logic).
-- **APIs**:
-  - [Open-Meteo](https://open-meteo.com/) (Weather Data)
-  - [Open-Meteo Geocoding](https://open-meteo.com/en/docs/geocoding-api) (Location Search)
+Built with performance and simplicity in mind, using standard web technologies without heavy framework overhead.
 
-## 📜 License
-
-This project is open source and available for personal and commercial use.
+- **Frontend**: HTML5, CSS3 (Variables, Flexbox, Grid), Vanilla JavaScript (ES6+)
+- **API**: [Open-Meteo API](https://open-meteo.com/) (No API key required!)
+- **Geocoding**: Open-Meteo Geocoding API
+- **Icons**: SVG Icons (Feather Icons / Custom)
 
 ---
 
-**Built with 💙 by DeNNiiInc**
+## 🤝 Contributing
+
+Contributions are welcome! If you have suggestions or improvements, please fork the repository and submit a pull request.
+
+1.  Fork the Project
+2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4.  Push to the Branch (`git push origin feature/AmazingFeature`)
+5.  Open a Pull Request
+
+---
+
+<div align="center">
+
+**Developed with ❤️ by [Beyond Cloud Technology](https://beyondcloud.technology)**
+
+</div>
